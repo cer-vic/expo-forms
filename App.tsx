@@ -6,6 +6,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import Input from "./components/Input";
 import FormPicker from "./components/FormPicker";
 import FormDateTimePicker from "./components/FormDateTimePicker";
+import FormCheckbox from "./components/FormCheckbox";
 
 interface FormData extends FieldValues {
   firstName: string;
@@ -13,6 +14,7 @@ interface FormData extends FieldValues {
   picker: string;
   time: Date;
   date: Date;
+  checked: boolean;
 }
 
 const options = [
@@ -34,6 +36,7 @@ export default function App() {
       picker: "",
       time: new Date(),
       date: new Date(),
+      checked: false,
     },
   });
 
@@ -42,7 +45,7 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.label}>First name</Text>
       <Input control={control} required name="firstName" style={styles.input} />
 
@@ -76,6 +79,19 @@ export default function App() {
         required
         style={{
           backgroundColor: "white",
+          marginBottom: 20,
+        }}
+      />
+
+      <FormCheckbox
+        control={control}
+        name="checked"
+        label="Checkbox"
+        labelProps={{
+          style: styles.label,
+        }}
+        style={{
+          backgroundColor: "white",
         }}
       />
 
@@ -86,14 +102,13 @@ export default function App() {
       <View style={styles.button}>
         <Button color="white" title="Submit" onPress={handleSubmit(onSubmit)} />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     paddingTop: Constants.statusBarHeight,
     padding: 8,
     backgroundColor: "#0e101c",

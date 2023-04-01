@@ -6,4 +6,4 @@
 - [x] add Picker wrapper
 - [x] add DateTimePicker wrapper
 - [ ] add radio button wrapper
-- [ ] add checkbox wrapper
+- [x] add checkbox wrapper
