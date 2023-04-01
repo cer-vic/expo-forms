@@ -1,10 +1,19 @@
 import React from "react";
 
 import Constants from "expo-constants";
-import { StyleSheet, Text, View, Button } from "react-native";
-import { useForm } from "react-hook-form";
+import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+import { FieldValues, useForm } from "react-hook-form";
 import Input from "./components/Input";
 import FormPicker from "./components/FormPicker";
+import FormDateTimePicker from "./components/FormDateTimePicker";
+
+interface FormData extends FieldValues {
+  firstName: string;
+  lastName: string;
+  picker: string;
+  time: Date;
+  date: Date;
+}
 
 const options = [
   { label: "Option 1", value: "option1" },
@@ -18,11 +27,13 @@ export default function App() {
     control,
     reset,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     defaultValues: {
       firstName: "",
       lastName: "",
       picker: "",
+      time: new Date(),
+      date: new Date(),
     },
   });
 
@@ -38,13 +49,34 @@ export default function App() {
       <Text style={styles.label}>Last name</Text>
       <Input control={control} name="lastName" style={styles.input} required />
 
-      {/* TODO: styles */}
       <Text style={styles.label}>Picker</Text>
       <FormPicker
         itemStyle={{ backgroundColor: "white" }}
         control={control}
         name="picker"
         items={options}
+      />
+
+      <Text style={styles.label}>Time picker</Text>
+      <FormDateTimePicker
+        control={control}
+        name="time"
+        mode="time"
+        required
+        style={{
+          backgroundColor: "white",
+        }}
+      />
+
+      <Text style={styles.label}>Date picker</Text>
+      <FormDateTimePicker
+        control={control}
+        name="date"
+        mode="date"
+        required
+        style={{
+          backgroundColor: "white",
+        }}
       />
 
       <View style={styles.button}>
