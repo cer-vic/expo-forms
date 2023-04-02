@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, TextProps } from "react-native";
+import { Text, TextProps, View } from "react-native";
 
 import Checkbox, { CheckboxProps } from "expo-checkbox";
 import { Control, Controller } from "react-hook-form";
@@ -23,10 +23,10 @@ const FormCheckbox = ({
       control={control}
       name={name}
       render={({ field: { onChange, value } }) => (
-        <>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Checkbox value={value} onValueChange={onChange} {...rest} />
           <Text {...labelProps}>{label}</Text>
-        </>
+        </View>
       )}
     />
   );

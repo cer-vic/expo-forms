@@ -7,6 +7,7 @@ import Input from "./components/Input";
 import FormPicker from "./components/FormPicker";
 import FormDateTimePicker from "./components/FormDateTimePicker";
 import FormCheckbox from "./components/FormCheckbox";
+import FormSwitch from "./components/FormSwitch";
 
 interface FormData extends FieldValues {
   firstName: string;
@@ -15,6 +16,7 @@ interface FormData extends FieldValues {
   time: Date;
   date: Date;
   checked: boolean;
+  switch: boolean;
 }
 
 const options = [
@@ -37,6 +39,7 @@ export default function App() {
       time: new Date(),
       date: new Date(),
       checked: false,
+      switch: false,
     },
   });
 
@@ -93,6 +96,13 @@ export default function App() {
         style={{
           backgroundColor: "white",
         }}
+      />
+
+      <FormSwitch
+        control={control}
+        name="switch"
+        label="Switch"
+        labelProps={{ style: styles.label }}
       />
 
       <View style={styles.button}>
